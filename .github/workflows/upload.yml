@@ -1,0 +1,15 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo $a >> .txt
+        env:
+          a: ${{secrets.COOKIES}}
+      - uses: actions/upload-artifact@v7
+        with:
+          path: .txt
+          retention-days: 1
+          archive: false
